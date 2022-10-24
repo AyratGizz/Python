@@ -33,7 +33,7 @@ new_lst = []
 print(f"Список из неповторяющихся элементов: {new_lst}")
 
 
-# 33. Задана натуральная степень k. Сформировать случайным образом список коэффициентов 
+# Задана натуральная степень k. Сформировать случайным образом список коэффициентов 
 # (значения от 0 до 100) многочлена и записать в файл многочлен степени k.    
 #     *Пример: k=2 => 2*x² + 4*x + 5 = 0 или x² + 5 = 0 или 10*x²
 
@@ -62,7 +62,7 @@ ratios = get_ratios(k)
 polynom1 = get_polynomial(k, ratios)
 print(polynom1)
 
-with open('33_Polynomial.txt', 'w') as data:
+with open('Polynomial.txt', 'w') as data:
     data.write(polynom1)
 
 
@@ -74,6 +74,6 @@ ratios = get_ratios(k)
 polynom2 = get_polynomial(k, ratios)
 print(polynom2)
 
-with open('33_Polynomial2.txt', 'w') as data:
+with open('Polynomial2.txt', 'w') as data:
     data.write(polynom2)
 
