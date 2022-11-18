@@ -1,6 +1,7 @@
 from model_mult import *
 from log import *
-import view
+from Python_Seminar.Seminar.Seminar_8 import view
+
 
 def button_click():
     value_a = view.get_value()
@@ -16,8 +17,6 @@ def button_click():
         result = subtr(value_a, value_b)
     else:
         result = 'Такой операции не существует!'
-        
-    
+
     view.view_data(result, "Результат: ")
     save_log()
-    
