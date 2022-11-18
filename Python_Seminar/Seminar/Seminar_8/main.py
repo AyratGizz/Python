@@ -1,3 +1,3 @@
-import controller as contr
+import controller as controller
 
-contr.button_click()
+controller.button_click()
