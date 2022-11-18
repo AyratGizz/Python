@@ -9,8 +9,7 @@ def fio():
     # try:
     #     with open('reference.csv', 'r', newline='', encoding='utf-8') as f:
     #         reader = csv.DictReader(f, delimiter=';')
-    #         row_count = sum (1
-    #             for row in cvs.reader)
+    #         row_count = sum (1 for row in reference.csv)
     #
     # except:
 
@@ -23,4 +22,3 @@ def fio():
     data = {'Имя': name, 'Фамилия': sur_name, 'Отчество': patronymic,
             'Возраст': age, 'Должность': dolznost, 'Телефон': str(phone)}
     return data
-
