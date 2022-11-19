@@ -5,12 +5,12 @@ customtkinter.set_appearance_mode("dark")  # "System" (standard), "Dark", "Light
 customtkinter.set_default_color_theme("blue")  # "blue" (standard), "green", "dark-blue"
 # Создание рабочего окна
 window = customtkinter.CTk()
-window.title('Калькулятор от Айрата')
-window.geometry('239x265+1000+300')
+window.title('Айрат')
+window.geometry('239x265+1200+600')
 # Создание поля ввода/вывода данных
 frame_1 = customtkinter.CTkFrame(master=window)
 frame_1.pack(pady=13, padx=13, fill="both", expand=True)
-entry = customtkinter.CTkEntry(master=frame_1, width=210, placeholder_text="")
+entry = customtkinter.CTkEntry(master=frame_1, width=210, placeholder_text="0")
 entry.pack(pady=13, padx=13)
 entry.place(x=1, y=1)
 
@@ -94,18 +94,18 @@ def count_result():
 
 
 # Создание кнопок
-btn1 = Button(window, font=('', '14'), bg='black', fg='white',
+btn1 = Button(window, font=('', '14'), bg='#008B8B', fg='white',
               text='(', command=lambda: input_into_entry('('))
 btn1.place(x=10, y=70, width=70, height=50)
 
-btn_clear = Button(window, font=('', '14'), bg='black', fg='white',
+btn_clear = Button(window, font=('', '14'), bg='#008B8B', fg='white',
                    text=')', command=lambda: input_into_entry(')'))
 btn_clear.place(x=80, y=70, width=70, height=50)
 
-btn_clear_2 = Button(window, font=('', '14'), bg='black', fg='white', text='CE', command=clear)
+btn_clear_2 = Button(window, font=('', '14'), bg='#008B8B', fg='white', text='CE', command=clear)
 btn_clear_2.place(x=150, y=70, width=70, height=50)
 
-btn4 = Button(window, font=('', '25'), bg='black', fg='white',
+btn4 = Button(window, font=('', '25'), bg='#008B8B', fg='white',
               text='/', command=lambda: input_into_entry('/'))
 btn4.place(x=220, y=70, width=70, height=50)
 
@@ -121,7 +121,7 @@ btn7 = Button(window, font=('', '16'), bg='black', fg='white',
               text='9', command=lambda: input_into_entry('9'))
 btn7.place(x=150, y=120, width=70, height=50)
 
-btn8 = Button(window, font=('', '25'), bg='black', fg='white',
+btn8 = Button(window, font=('', '25'), bg='#008B8B', fg='white',
               text='*', command=lambda: input_into_entry('*'))
 btn8.place(x=220, y=120, width=70, height=50)
 
@@ -137,7 +137,7 @@ btn11 = Button(window, font=('', '16'), bg='black', fg='white',
                text='6', command=lambda: input_into_entry('6'))
 btn11.place(x=150, y=170, width=70, height=50)
 
-btn12 = Button(window, font=('', '25'), bg='black', fg='white',
+btn12 = Button(window, font=('', '25'), bg='#008B8B', fg='white',
                text='-', command=lambda: input_into_entry('-'))
 btn12.place(x=220, y=170, width=70, height=50)
 
@@ -153,7 +153,7 @@ btn15 = Button(window, font=('', '16'), bg='black', fg='white',
                text='3', command=lambda: input_into_entry('3'))
 btn15.place(x=150, y=220, width=70, height=50)
 
-btn16 = Button(window, font=('', '22'), bg='black', fg='white',
+btn16 = Button(window, font=('', '22'), bg='#008B8B', fg='white',
                text='+', command=lambda: input_into_entry('+'))
 btn16.place(x=220, y=220, width=70, height=50)
 #
@@ -169,6 +169,6 @@ btn15 = Button(window, font=('', '16'), bg='black', fg='white',
                text='.', command=lambda: input_into_entry('.'))
 btn15.place(x=150, y=270, width=70, height=50)
 
-btn_result = Button(window, font=('', '30'), bg='black', fg='white', text='=', command=count_result)
+btn_result = Button(window, font=('', '30'), bg='#DC143C', fg='white', text='=', command=count_result)
 btn_result.place(x=220, y=270, width=70, height=50)
 window.mainloop()  # Для бесконечной работы программы
