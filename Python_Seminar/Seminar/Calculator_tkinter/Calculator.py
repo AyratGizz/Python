@@ -7,7 +7,6 @@ customtkinter.set_default_color_theme("blue")  # "blue" (standard), "green", "da
 window = customtkinter.CTk()
 window.title('Калькулятор от Айрата')
 window.geometry('239x265+1000+300')
-
 # Создание поля ввода/вывода данных
 frame_1 = customtkinter.CTkFrame(master=window)
 frame_1.pack(pady=13, padx=13, fill="both", expand=True)
@@ -16,8 +15,6 @@ entry.pack(pady=13, padx=13)
 entry.place(x=1, y=1)
 
 
-# entry = Entry(window, width=15, bg='black', fg='white', font=('', '20'))
-# entry.place(x=13, y=60)
 # Функция вывода данных в поле ввода/вывода
 def input_into_entry(symbol):
     entry.insert(END, symbol)
@@ -28,7 +25,6 @@ def clear():
     entry.delete(0, END)
 
 
-# -----------------------------------------------------------------------------------
 # Функции арифметических операций
 def add(lst):
     return sum(lst)
@@ -58,7 +54,6 @@ def delim(lst):
         return "Нельзя делить на '0'"
 
 
-# -------------------------------------------------------------------------------------
 # Функция, которая принимает на вход текст, разбивает его по алгебраическим действиям и
 # вызывает арифметические функции по приоритету
 def app(txt):
@@ -90,7 +85,6 @@ def app(txt):
             return diff(lst)
 
 
-# -------------------------------------------------------------------------
 # Функция для вызова функции app и вывода полученного решения в поле ввода/вывода
 def count_result():
     txt = entry.get()
@@ -99,7 +93,6 @@ def count_result():
     entry.insert(0, result)
 
 
-# ---------------------------------------------------------------------------
 # Создание кнопок
 btn1 = Button(window, font=('', '14'), bg='black', fg='white',
               text='(', command=lambda: input_into_entry('('))
@@ -178,6 +171,4 @@ btn15.place(x=150, y=270, width=70, height=50)
 
 btn_result = Button(window, font=('', '30'), bg='black', fg='white', text='=', command=count_result)
 btn_result.place(x=220, y=270, width=70, height=50)
-#
-# Для бесконечной работы программы
-window.mainloop()
+window.mainloop()  # Для бесконечной работы программы
