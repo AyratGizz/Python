@@ -4,6 +4,7 @@
 from operation import *
 from view import *
 from log import *
+from operation import field_names
 
 
 def button_click():
@@ -16,6 +17,13 @@ def button_click():
                          'Для завершения работы программы введите - 5, \n'
                          'Введите здесь: '))
         if func == 1:
+            field_names()
+            # file_exists = os.path.isfile('reference.csv')
+            # with open('reference.csv', 'a', newline='', encoding='utf-8') as f:
+            #     fieldnames = ['ID', 'Фамилия', 'Имя', 'Отчество', 'Возраст', 'Должность', 'Телефон']
+            #     writer = csv.DictWriter(f, delimiter=';', fieldnames=fieldnames)
+            #     if not file_exists:
+            #         writer.writeheader()
             result = fio()
             record_data(result)
             write(func, result)
@@ -30,4 +38,3 @@ def button_click():
             delete_job = input('Кого удалить из базы?: ')
             delete_subscriber(delete_job)
             write(func, delete_job)
-    print('Такой функции нет!!! Выберите функцию от 1 до 5!!!')

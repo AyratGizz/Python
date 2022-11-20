@@ -3,13 +3,22 @@ import os.path
 from view import *
 
 
-def record_data(dictt):
+def field_names():
     file_exists = os.path.isfile('reference.csv')
     with open('reference.csv', 'a', newline='', encoding='utf-8') as f:
         fieldnames = ['ID', 'Фамилия', 'Имя', 'Отчество', 'Возраст', 'Должность', 'Телефон']
         writer = csv.DictWriter(f, delimiter=';', fieldnames=fieldnames)
         if not file_exists:
             writer.writeheader()
+
+
+def record_data(dictt):
+    # file_exists = os.path.isfile('reference.csv')
+    with open('reference.csv', 'a', newline='', encoding='utf-8') as f:
+        fieldnames = ['ID', 'Фамилия', 'Имя', 'Отчество', 'Возраст', 'Должность', 'Телефон']
+        writer = csv.DictWriter(f, delimiter=';', fieldnames=fieldnames)
+        # if not file_exists:
+        #     writer.writeheader()
         writer.writerow(dictt)
     view_data('Данные записаны успешно.\n')
 
