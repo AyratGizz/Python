@@ -1,13 +1,13 @@
-import csv
-import pandas as pd
+# import pandas as pd
+# from csv import *
 
 
 def view_data(data):
     print(f'{data}')
 
 
-row_count = pd.read_csv("reference.csv")
-rowcount = len(row_count)
+# row_count = pd.read_csv("reference.csv")
+# rowcount = len(row_count)
 
 
 # rowcount = None
@@ -24,13 +24,14 @@ def fio():
     #             rowcount += 1
     # except:
     #     print('База данных пуста!')
-    user_id = rowcount + 1
-    name = input('Введите Имя работника: ')
+    # user_id = rowcount + 1
+    user_id = 1
     sur_name = input('Введите Фамилию работника: ')
+    name = input('Введите Имя работника: ')
     patronymic = input('Введите Отчество работника: ')
     age = int(input('Введите Возраст работника: '))
-    dolznost = input('Введите Должность работника: ')
+    job_title = input('Введите Должность работника: ')
     phone = int(input('Введи Номер телефона работника:'))
-    data = {'ID': user_id, 'Имя': name, 'Фамилия': sur_name, 'Отчество': patronymic,
-            'Возраст': age, 'Должность': dolznost, 'Телефон': str(phone)}
+    data = {'ID': user_id, 'Фамилия': sur_name, 'Имя': name, 'Отчество': patronymic,
+            'Возраст': age, 'Должность': job_title, 'Телефон': str(phone)}
     return data

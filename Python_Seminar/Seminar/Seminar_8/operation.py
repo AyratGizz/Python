@@ -6,7 +6,7 @@ from view import *
 def record_data(dictt):
     file_exists = os.path.isfile('reference.csv')
     with open('reference.csv', 'a', newline='', encoding='utf-8') as f:
-        fieldnames = ['ID', 'Имя', 'Фамилия', 'Отчество', 'Возраст', 'Должность', 'Телефон']
+        fieldnames = ['ID', 'Фамилия', 'Имя', 'Отчество', 'Возраст', 'Должность', 'Телефон']
         writer = csv.DictWriter(f, delimiter=';', fieldnames=fieldnames)
         if not file_exists:
             writer.writeheader()
@@ -20,14 +20,14 @@ def reading_reference():
             reader = csv.DictReader(f, delimiter=';')
             for row in reader:
                 view_data('ID: {}, '
-                          'Имя: {}, '
-                          'Фамилия: {},  '
+                          'Фамилия: {}, '
+                          'Имя: {},  '
                           'Отчество: {}, '
                           'Возраст {}, '
                           'Должность {}, '
                           'Телефон: {}'.format(row['ID'],
-                                               row['Имя'],
                                                row['Фамилия'],
+                                               row['Имя'],
                                                row['Отчество'],
                                                row['Возраст'],
                                                row['Должность'],
