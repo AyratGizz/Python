@@ -1,4 +1,3 @@
-import tkinter
 from tkinter import *
 import customtkinter
 
@@ -11,7 +10,7 @@ window.geometry('239x265+1200+600')
 # Создание поля ввода/вывода данных
 frame_1 = customtkinter.CTkFrame(master=window)
 frame_1.pack(pady=13, padx=13, fill="both", expand=True)
-entry = customtkinter.CTkEntry(master=frame_1, width=210, placeholder_text="0", justify=tkinter.RIGHT)
+entry = customtkinter.CTkEntry(master=frame_1, width=210, placeholder_text="0")
 entry.pack(pady=13, padx=13)
 entry.place(x=1, y=1)
 
