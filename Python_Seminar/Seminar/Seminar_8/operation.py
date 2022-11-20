@@ -50,16 +50,16 @@ def search_subscriber(strr):
     except:
         view_data('База данных отсутствует!\n')
 
-# def delete_subscriber(strr):
-#     try:
-#         with open('reference.csv', 'r', newline='', encoding='utf-8') as f:
-#             reader = csv.DictReader(f, delimiter=';')
-#             flag = False
-#             for row in reader:
-#                 if strr in row.values():
-#                     view_data('Результат поиска:\n {}\n'.format(row))
-#                     flag = True
-#             if flag == False:
-#                 view_data('Такого сотрудника в базе нет.')
-#     except:
-#         view_data('База данных отсутствует!\n')
+
+def delete_subscriber(strr):
+    try:
+        with open('reference.csv', 'r+', encoding='utf-8') as d:
+            read_2 = d.readlines()
+            d.seek(0)
+            for line in read_2:
+                if strr not in line:
+                    d.write(line)
+                d.truncate()
+        view_data('Данные успешно удалены.\n')
+    except:
+        view_data('База данных отсутствует!\n')

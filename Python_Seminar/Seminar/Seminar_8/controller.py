@@ -26,4 +26,8 @@ def button_click():
             poisk = input('Кого ищем? : ')
             search_subscriber(poisk)
             write(func, poisk)
-        # if func == 4:
+        if func == 4:
+            delete_job = input('Кого удалить из базы?: ')
+            delete_subscriber(delete_job)
+            write(func, delete_job)
+    print('Такой функции нет!!! Выберите функцию от 1 до 5!!!')
