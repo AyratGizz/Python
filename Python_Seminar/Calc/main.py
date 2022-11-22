@@ -1,17 +1,17 @@
-import tkinter
 from tkinter import *
-import customtkinter
 
-# customtkinter.set_appearance_mode("dark")  # "System" (standard), "Dark", "Light"
-# customtkinter.set_default_color_theme("dark-blue")  # "blue" (standard), "green", "dark-blue"
+from customtkinter import *
+
+set_appearance_mode("dark")  # "System" (standard), "Dark", "Light"
+set_default_color_theme("dark-blue")  # "blue" (standard), "green", "dark-blue"
 # Создание рабочего окна
-window = customtkinter.CTk()
+window = CTk()
 window.title('Айрат')
 window.geometry('239x265+1200+600')
 # Создание поля ввода/вывода данных
-frame_1 = customtkinter.CTkFrame(master=window)
+frame_1 = CTkFrame(master=window)
 frame_1.pack(pady=13, padx=13, fill="both", expand=True)
-entry = customtkinter.CTkEntry(master=frame_1, width=210, placeholder_text="0", justify=tkinter.RIGHT)
+entry = CTkEntry(master=frame_1, width=210, placeholder_text="0", justify=RIGHT)
 entry.pack(pady=13, padx=13)
 entry.place(x=1, y=1)
 

@@ -1,0 +1,12 @@
+QWindget {
+    color: white;
+    background-color: #121212;
+    font-family: Rubik;
+    font-size: 16pt;
+    font-weight: 600;
+}
+
+QPushButton {
+    background-color: transparent;
+    border: none;
+}
