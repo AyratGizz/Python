@@ -163,7 +163,7 @@ def send_sms(*obj):
 
 
 if __name__ == '__main__':
-    print('TEST 1  ___________________')
+    print('Тест № 1')
     person1 = Person("Ivan", "Ivanovich", "Ivanov", {"private": 123, "work": 456})
     person2 = Person("Ivan", "Petrovich", "Petrov", {"private": 789})
     person3 = Person("Ivan", "Petrovich", "Sidorov", {"work": 789})
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     company2 = Company("Cell", "АО", {"non_contact": 222}, person2, person3)
     company3 = Company("Dell", "Ltd", {"non_contact": 333}, person2, person4)
     send_sms(person1, person2, person3, person4, company1, company2, company3)
-    print('TEST 2  ___________________')
+    print('Tест № 2')
     person1 = Person("Степан", "Петрович", "Джобсов", {"private": 555})
     person2 = Person("Боря", "Иванович", "Гейтсов", {"private": 777, "work": 888})
     person3 = Person("Семен", "Робертович", "Возняцкий", {"work": 789})
