@@ -1,10 +1,19 @@
-import telebot
-import config
+from config import TOKEN
 import random
+import requests
+from datetime import datetime
+import telebot
+from db import BotDB
 
-from telebot import types
+BotDB = BotDB('')
+bot = telebot.TeleBot(TOKEN)
 
-bot = telebot.TeleBot(config.TOKEN)
+
+def get_data():
+    req = requests.get('https://yobit.net/api/3/ticker/btc_usd')
+    response = req.json()
+    sell_price = response['btc_usd']['sell']
+    return f"{datetime.now().strftime('%Y-%m-%d %H:%M')}\nСтоимость BTC: {sell_price}$"
 
 
 @bot.message_handler(commands=['start'])
@@ -12,21 +21,22 @@ def welcome(message):
     sti = open('stickers/hi.webp', 'rb')
     bot.send_sticker(message.chat.id, sti)
     # Меню - кнопки
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)  # resize_keyboard - маленькая кнопка
-    item1 = types.KeyboardButton('🎲 Рандомное число')
-    item2 = types.KeyboardButton('😊 Как дела?')
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)  # resize_keyboard - автоматический размер кнопок
+    item1 = telebot.types.KeyboardButton('🎲 Рандомное число')
+    item2 = telebot.types.KeyboardButton('😊 Как дела?')
+    item3 = telebot.types.KeyboardButton('💰 Цена Bitcoin')
 
-    markup.add(item1, item2)
+    markup.add(item1, item2, item3)
 
     bot.send_message(message.chat.id,
-                     "Добро пожаловать, {0.first_name}!\nЯ - <u><b>{1.first_name}</b></u>, бот созданный для Вас!".format(
-                         message.from_user, bot.get_me()), parse_mode='html', reply_markup=markup)  #
+                     "Добро пожаловать, {0.first_name}!\nЯ - <u><b>{1.first_name}</b></u>, бот созданный для Вас!".
+                     format(message.from_user, bot.get_me()), parse_mode='html', reply_markup=markup)  #
     # reply_markup - прикрепление кнопки к сообщению
 
 
 # Считывание введенного текста (нажатой кнопки, которая передаёт текст)
 @bot.message_handler(content_types=['text'])
-def lalala(message):
+def send_text(message):
     # bot.send_message(message.chat.id, message.text) - пересылает в ответ то же сообщение (попугай)
     if message.chat.type == 'private':
         if message.text == '🎲 Рандомное число':
@@ -34,16 +44,18 @@ def lalala(message):
         elif message.text == '😊 Как дела?':
 
             # Ин лайновая клавиатура
-            markup = types.InlineKeyboardMarkup(row_width=2)
-            item1 = types.InlineKeyboardButton('Хорошо', callback_data='good')
-            item2 = types.InlineKeyboardButton('Не очень', callback_data='bad')
+            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+            item1 = telebot.types.InlineKeyboardButton('Хорошо', callback_data='good')
+            item2 = telebot.types.InlineKeyboardButton('Не очень', callback_data='bad')
 
             markup.add(item1, item2)
 
             bot.send_message(message.chat.id, 'Отлично, сам как? 😇', reply_markup=markup)
             # reply_markup=markup - Прикрепляем к сообщению
+        elif message.text == '💰 Цена Bitcoin':
+            bot.send_message(message.chat.id, get_data())
         else:
-            bot.send_message(message.chat.id, 'Я не знаю что и ответить 🤪')
+            bot.send_message(message.chat.id, 'Что? Я не знаю такого...')
 
 
 # Обработка нажатия кнопок ин лайновой клавиатуры
@@ -67,5 +79,5 @@ def callback_inline(call):
         print(repr(e))
 
 
-# Для постоянной работы бота
+# Для постоянной работы бота и отслеживания поступающих сообщений
 bot.polling(none_stop=True)
