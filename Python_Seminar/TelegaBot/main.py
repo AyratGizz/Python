@@ -6,7 +6,7 @@ import telebot
 
 bot = telebot.TeleBot(TOKEN)
 
-
+# Функция парсераинга сайта и отправки цены биткойн пользователю
 def get_data():
     req = requests.get('https://yobit.net/api/3/ticker/btc_usd')
     response = req.json()
@@ -36,33 +36,35 @@ def welcome(message):
 # Считывание введенного текста (нажатой кнопки, которая передаёт текст)
 @bot.message_handler(content_types=['text'])
 def send_text(message):
-    # bot.send_message(message.chat.id, message.text) - пересылает в ответ то же сообщение (попугай)
-    if message.chat.type == 'private':
-        if message.text == '🎲 Рандомное число':
-            bot.send_message(message.chat.id, str(random.randint(1, 1000)))
-        elif message.text == '😊 Как дела?':
+    if message.text == ''
+        # bot.send_message(message.chat.id, message.text) - пересылает в ответ то же сообщение (попугай)
+        if message.chat.type == 'private':
+            if message.text == '🎲 Рандомное число':
+                bot.send_message(message.chat.id, str(random.randint(1, 1000)))
+            elif message.text == '😊 Как дела?':
 
-            # Ин лайновая клавиатура
-            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
-            item1 = telebot.types.InlineKeyboardButton('Хорошо', callback_data='good')
-            item2 = telebot.types.InlineKeyboardButton('Не очень', callback_data='bad')
+                # Ин лайновая клавиатура
+                markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+                item1 = telebot.types.InlineKeyboardButton('Хорошо', callback_data='good')
+                item2 = telebot.types.InlineKeyboardButton('Не очень', callback_data='bad')
 
-            markup.add(item1, item2)
+                markup.add(item1, item2)
 
-            bot.send_message(message.chat.id, 'Отлично, сам как? 😇', reply_markup=markup)
-            # reply_markup=markup - Прикрепляем к сообщению
-        elif message.text == '💰 Цена Bitcoin':
-            bot.send_message(message.chat.id, get_data())
+                bot.send_message(message.chat.id, 'Отлично, сам как? 😇', reply_markup=markup)
+                # reply_markup=markup - Прикрепляем к сообщению
+            elif message.text == '💰 Цена Bitcoin':
+                bot.send_message(message.chat.id, get_data())
 
-        elif message.text == '📖 Информация':
-            bot.send_message(message.chat.id,
-                             'Я - бот <u><b>{1.first_name}</b></u>, созданный разработчиком '
-                             '<b>Гиззатуллиным Айратом</b>'
-                             ' в качестве домашнего задания семинара по "Знакомству '
-                             'с языком Python" в школе GeekBrains!'.
-                             format(message.from_user, bot.get_me()), parse_mode='html')
-        else:
-            bot.send_message(message.chat.id, 'Что? Я не знаю такого...')
+            elif message.text == '📖 Информация':
+                bot.send_message(message.chat.id,
+                                 'Я - бот <u><b>{1.first_name}</b></u>, созданный разработчиком '
+                                 '<b>Гиззатуллиным Айратом</b>'
+                                 ' в качестве домашнего задания семинара по "Знакомству '
+                                 'с языком Python" в школе GeekBrains!'.
+                                 format(message.from_user, bot.get_me()), parse_mode='html')
+
+            else:
+                bot.send_message(message.chat.id, 'Что? Я не знаю такого...')
 
 
 # Обработка нажатия кнопок ин лайновой клавиатуры
