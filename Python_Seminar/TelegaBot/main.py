@@ -7,28 +7,12 @@ import telebot
 bot = telebot.TeleBot(TOKEN)
 
 
-# Функция парсераинга сайта и отправки цены биткойн пользователю
+# Функция парcинга сайта и отправки цены биткойн пользователю
 def get_data():
     req = requests.get('https://yobit.net/api/3/ticker/btc_usd')
     response = req.json()
     sell_price = response['btc_usd']['sell']
     return f"{datetime.now().strftime('%Y-%m-%d %H:%M')}\nСтоимость BTC: {sell_price}$"
-
-
-# Запрос номера телефона
-
-# @bot.message_handler(command=['phone_number'])
-# def telefone(message):
-#     keyboard = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
-#     button_phone = telebot.types.KeyboardButton(text='Предоставить номер телефона', requests_contact=True)
-#     keyboard.add(button_phone)
-#     bot.send_message(message.chat.id, 'phone_number', reply_markup=keyboard)
-#
-#
-# @bot.message_handler(content_types=['contact'])
-# def contact(message):
-#     if message.contact is not None:
-#         bot.send_message(message.chat.id, message)
 
 
 # -------------
@@ -85,7 +69,7 @@ def send_text(message):
             markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
             button_phone = telebot.types.KeyboardButton('Предоставить номер телефона', request_contact=True)
             markup.add(button_phone)
-            bot.send_message(message.chat.id, 'Нажмите кнопку - Предоставить номер телефона', reply_markup=markup)
+            bot.send_message(message.chat.id, 'Нажмите кнопку -> Предоставить номер телефона', reply_markup=markup)
 
         else:
             bot.send_message(message.chat.id, 'Что? Я не знаю такого...')
