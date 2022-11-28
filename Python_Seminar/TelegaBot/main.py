@@ -15,13 +15,14 @@ def get_data():
     return f"{datetime.now().strftime('%Y-%m-%d %H:%M')}\nСтоимость BTC: {sell_price}$"
 
 
-# -------------
+# ------------- Команда Старт ---------------
 @bot.message_handler(commands=['start'])
 def welcome(message):
     sti = open('stickers/hi.webp', 'rb')
     bot.send_sticker(message.chat.id, sti)
     # Меню - кнопки
-    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)  # resize_keyboard - автоматический размер кнопок
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    # resize_keyboard - подгон автоматического размера кнопок
     item1 = telebot.types.KeyboardButton('🎲 Рандомное число')
     item2 = telebot.types.KeyboardButton('😊 Как дела?')
     item3 = telebot.types.KeyboardButton('💰 Цена Bitcoin')
@@ -67,9 +68,26 @@ def send_text(message):
                              format(message.from_user, bot.get_me()), parse_mode='html')
         elif message.text == '📲 Номер телефона':
             markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-            button_phone = telebot.types.KeyboardButton('Предоставить номер телефона', request_contact=True)
-            markup.add(button_phone)
-            bot.send_message(message.chat.id, 'Нажмите кнопку -> Предоставить номер телефона', reply_markup=markup)
+            button_phone = telebot.types.KeyboardButton('Номер телефона', request_contact=True)
+            back = telebot.types.KeyboardButton('🔙 Назад')
+            markup.add(button_phone, back)
+            bot.send_message(message.chat.id, 'Нажмите кнопку -> Номер телефона ⬇️', reply_markup=markup)
+        elif message.text == '🔙 Назад':
+            markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+            # resize_keyboard - подгон автоматического размера кнопок
+            item1 = telebot.types.KeyboardButton('🎲 Рандомное число')
+            item2 = telebot.types.KeyboardButton('😊 Как дела?')
+            item3 = telebot.types.KeyboardButton('💰 Цена Bitcoin')
+            item4 = telebot.types.KeyboardButton('📖 Информация')
+            item5 = telebot.types.KeyboardButton('📲 Номер телефона')
+
+            markup.add(item1, item2, item3, item4, item5)
+
+            bot.send_message(message.chat.id,
+                             'Выберите пункт меню ⬇️'.
+                             format(message.from_user, bot.get_me()), parse_mode='html', reply_markup=markup)
+
+
 
         else:
             bot.send_message(message.chat.id, 'Что? Я не знаю такого...')
