@@ -3,9 +3,7 @@ import random
 import requests
 from datetime import datetime
 import telebot
-from db import BotDB
 
-BotDB = BotDB('')
 bot = telebot.TeleBot(TOKEN)
 
 
@@ -25,8 +23,9 @@ def welcome(message):
     item1 = telebot.types.KeyboardButton('🎲 Рандомное число')
     item2 = telebot.types.KeyboardButton('😊 Как дела?')
     item3 = telebot.types.KeyboardButton('💰 Цена Bitcoin')
+    item4 = telebot.types.KeyboardButton('📖 Информация')
 
-    markup.add(item1, item2, item3)
+    markup.add(item1, item2, item3, item4)
 
     bot.send_message(message.chat.id,
                      "Добро пожаловать, {0.first_name}!\nЯ - <u><b>{1.first_name}</b></u>, бот созданный для Вас!".
@@ -54,6 +53,13 @@ def send_text(message):
             # reply_markup=markup - Прикрепляем к сообщению
         elif message.text == '💰 Цена Bitcoin':
             bot.send_message(message.chat.id, get_data())
+
+        elif message.text == '📖 Информация':
+            bot.send_message(message.chat.id,
+                             "Я - бот <u><b>{1.first_name}</b></u>, созданный разработчиком <b>Гиззатуллиным Айратом</b>"
+                             " в качестве домашнего задания семинара по 'Знакомству "
+                             "с языком Python' в школе GeekBrains!".
+                             format(message.from_user, bot.get_me()), parse_mode='html')
         else:
             bot.send_message(message.chat.id, 'Что? Я не знаю такого...')
 
