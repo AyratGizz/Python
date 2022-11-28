@@ -66,12 +66,14 @@ def send_text(message):
                              ' в качестве домашнего задания семинара по "Знакомству '
                              'с языком Python" в школе GeekBrains!'.
                              format(message.from_user, bot.get_me()), parse_mode='html')
+
         elif message.text == '📲 Номер телефона':
             markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
             button_phone = telebot.types.KeyboardButton('Номер телефона', request_contact=True)
             back = telebot.types.KeyboardButton('🔙 Назад')
             markup.add(button_phone, back)
             bot.send_message(message.chat.id, 'Нажмите кнопку -> Номер телефона ⬇️', reply_markup=markup)
+
         elif message.text == '🔙 Назад':
             markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
             # resize_keyboard - подгон автоматического размера кнопок
@@ -87,10 +89,8 @@ def send_text(message):
                              'Выберите пункт меню ⬇️'.
                              format(message.from_user, bot.get_me()), parse_mode='html', reply_markup=markup)
 
-
-
         else:
-            bot.send_message(message.chat.id, 'Что? Я не знаю такого...')
+            bot.send_message(message.chat.id, 'Извините! Я ещё не знаю такой команды...')
 
 
 # Обработка нажатия кнопок ин лайновой клавиатуры
