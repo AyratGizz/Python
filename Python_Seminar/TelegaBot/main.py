@@ -71,8 +71,8 @@ def send_text(message):
                              '- Спрашивать как дела и отвечать по нажатию кнопки "Как дела?".\n'
                              '- Выводить стоимость BTC на текущий момент времени по нажатию кнопки "Цена BTC".\n'
                              '- Запрашивать предоставление номера телефона пользователя по нажатию кнопки '
-                             '"Номер телефона".'.
-                             format(message.from_user, bot.get_me()), parse_mode='html')
+                             '"Номер телефона".'
+                             .format(message.from_user, bot.get_me()), parse_mode='html')
 
         elif message.text == '📲 Номер телефона':
             markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -83,7 +83,6 @@ def send_text(message):
 
         elif message.text == '🔙 Назад':
             markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-            # resize_keyboard - подгон автоматического размера кнопок
             item1 = telebot.types.KeyboardButton('🎲 Рандомное число')
             item2 = telebot.types.KeyboardButton('😊 Как дела?')
             item3 = telebot.types.KeyboardButton('💰 Цена Bitcoin')
@@ -120,17 +119,6 @@ def callback_inline(call):
     except Exception as e:
         print(repr(e))
 
-
-# Парсер телефонного номера
-# import phonenumbers
-# from phonenumbers import timezone
-#
-# ph_number = phonenumbers.parse('+919876543210')
-# print(ph_number)
-# timeZone = timezone.time_zones_for_number(
-#     ph_number
-# )
-# print(''.join(timeZone))
 
 # Для постоянной работы бота и отслеживания поступающих сообщений
 bot.polling(none_stop=True)
