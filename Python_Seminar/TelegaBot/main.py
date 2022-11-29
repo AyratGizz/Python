@@ -114,5 +114,16 @@ def callback_inline(call):
         print(repr(e))
 
 
+# Парсер телефонного номера
+# import phonenumbers
+# from phonenumbers import timezone
+#
+# ph_number = phonenumbers.parse('+919876543210')
+# print(ph_number)
+# timeZone = timezone.time_zones_for_number(
+#     ph_number
+# )
+# print(''.join(timeZone))
+
 # Для постоянной работы бота и отслеживания поступающих сообщений
 bot.polling(none_stop=True)
