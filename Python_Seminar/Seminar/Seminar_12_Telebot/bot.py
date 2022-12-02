@@ -4,7 +4,6 @@ import requests
 from datetime import datetime
 import telebot
 
-
 bot = telebot.TeleBot(TOKEN)
 
 
@@ -19,7 +18,7 @@ def get_data():
 # ------------- Команда Старт ---------------
 @bot.message_handler(commands=['start'])
 def welcome(message):
-    sti = open('stickers/Hi.webp', 'rb')
+    sti = open('stickers/hi.webp', 'rb')
     bot.send_sticker(message.chat.id, sti)
     # Меню - кнопки
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
