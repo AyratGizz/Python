@@ -1,8 +1,9 @@
-from connect import TOKEN
+from config import TOKEN
 import random
 import requests
 from datetime import datetime
 import telebot
+import sqlite3
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -19,7 +20,7 @@ def welcome(message):
     item2 = telebot.types.KeyboardButton('📁Мои объявления')
     item3 = telebot.types.KeyboardButton('🔎Поиск объявлений')
     item4 = telebot.types.KeyboardButton('📖 Информация')
-    item5 = telebot.types.KeyboardButton('📲 Номер телефона')
+    item5 = telebot.types.KeyboardButton('📲 Регистрация')
 
     markup.add(item1, item2, item3, item4, item5)
 
@@ -70,13 +71,6 @@ def send_text(message):
                              '<b>Гиззатуллиным Айратом</b>'
                              ' в качестве домашнего задания семинара по "Знакомству '
                              'с языком Python" в школе GeekBrains!\n'
-                             '<u>Я умею:</u>\n'
-                             '- Выводить вам данную информацию по нажатию кнопки "Информация"\n'
-                             '- Выводить рандомное число по нажатию кнопки "Рандомное число".\n'
-                             '- Спрашивать как дела и отвечать по нажатию кнопки "Как дела?".\n'
-                             '- Выводить стоимость BTC на текущий момент времени по нажатию кнопки "Цена BTC".\n'
-                             '- Запрашивать предоставление номера телефона пользователя по нажатию кнопки '
-                             '"Номер телефона".'
                              .format(message.from_user, bot.get_me()), parse_mode='html')
 
         elif message.text == '📲 Регистрация':
@@ -297,10 +291,11 @@ def callback_inline(call):
                 bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                       text='Раздел на разработке...', reply_markup=None)
             # Обработка нажатия кнопок ин лайновой клавиатуры подкатегории Работа
-            elif call.data == 'vakansii':
+            elif call.data == 'vakansii':  # Ищу сотрудника
+                # ----------------------------------------------------------------------
                 bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                       text='Раздел на разработке...', reply_markup=None)
-            elif call.data == 'rezume':
+            elif call.data == 'rezume':  # Ищу работу
                 bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                       text='Раздел на разработке...', reply_markup=None)
             # Обработка нажатия кнопок ин лайновой клавиатуры подкатегории Услуги
